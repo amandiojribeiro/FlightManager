@@ -317,11 +317,11 @@
     <Compile Include="App_Start\UnityConfig.cs" />
     <Compile Include="App_Start\UnityWebApiActivator.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Controllers\AirportController.cs" />
+    <Compile Include="Controllers\Api\AirportController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\FileReaderController.cs" />
-    <Compile Include="Controllers\FlightController.cs" />
-    <Compile Include="Controllers\FlightReportsController.cs" />
+    <Compile Include="Controllers\Api\FlightController.cs" />
+    <Compile Include="Controllers\Api\FlightReportsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="CustomHandlers\CustomAuthorization.cs" />
