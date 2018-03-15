@@ -7,7 +7,7 @@
     public class AirportRepository : XmlRepository<Airport>, IAirportRepository
     {
         public AirportRepository()
-            : base("c:\\test")
+            : base(System.String.Format(@"{0}\bin\Dependencies", System.AppDomain.CurrentDomain.BaseDirectory))
         {
         }
     }

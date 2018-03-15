@@ -27,20 +27,23 @@
         /// This method is used for creating or updating flights
         /// </summary>
         /// <param name="request">Json with the flight information </param>
-        /// <response code="200">Json with Flight created or updated</response>
+        /// <response code="201">Json with Flight created or updated</response>
         /// <response code="404">No flight found</response>
         /// <response code="400">Bad Request</response>
         /// <response code="500">Internal Server Error</response>
-        [HttpPost, Route(""), ResponseType(typeof(FlightDto))]
+        [HttpPost, Route(), ResponseType(typeof(FlightDto))]
         public HttpResponseMessage AddFlight(FlightDto request)
         {
-            var result = this.flightService.SaveFlight(request);
-            if (result != null)
+            if(request.Name != null && request.ArraivalAirport != null && request.DepartureAirport != null)
             {
-                return Request.CreateResponse(System.Net.HttpStatusCode.OK, result);
+                var result = this.flightService.SaveFlight(request);
+                if (result != null)
+                {
+                    return Request.CreateResponse(System.Net.HttpStatusCode.Created, result);
+                }
+                return Request.CreateResponse(System.Net.HttpStatusCode.NotFound);
             }
-
-            return Request.CreateResponse(System.Net.HttpStatusCode.NotFound);
+            return Request.CreateResponse(System.Net.HttpStatusCode.BadRequest);
         }
 
         /// <summary>

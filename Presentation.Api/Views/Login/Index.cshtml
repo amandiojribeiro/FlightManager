@@ -1,32 +1,31 @@
 ﻿@model Presentation.Api.Models.User
 @{
     ViewBag.Title = "Login";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
-<h3></h3>
-@using (Html.BeginForm("Login","Login", FormMethod.Post))
-{
-    @Html.ValidationSummary(true, "Login failed. Check your login details.");
-    <div>
-        <fieldset>
-            <legend>Login</legend>
-            <div class="editor-label">
-                @Html.LabelFor(u => u.UserName)
-            </div>
-            <div class="editor-field">
-                @Html.TextBoxFor(u => u.UserName)
-                @Html.ValidationMessageFor(u => u.UserName)
-            </div>
-            <div class="editor-label">
-                @Html.LabelFor(u => u.Password)
-            </div>
-            <div class="editor-field">
-                @Html.PasswordFor(u => u.Password)
-                @Html.ValidationMessageFor(u => u.Password)
-            </div>
-            <br/>
-            <input type="submit" value="Log In"  />
-        </fieldset>
-    </div>
+    Layout = "~/Views/Shared/_Layout2.cshtml";
 }
 
+@using (Html.BeginForm("Login", "Login", FormMethod.Post))
+{
+    @Html.ValidationSummary(true, "Login failed. Check your login details.");
+
+    <form>
+        <div class="form-group row">
+            <label for="inputEmail3" class="col-sm-2 col-form-label">@Html.LabelFor(u => u.UserName)</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control form-control-sm" id="UserName" name="UserName" placeholder="Insert your user name">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="inputPassword3" class="col-sm-2 col-form-label">Password</label>
+            <div class="col-sm-10">
+                <input type="password" id="Password" name="Password" class="form-control form-control-sm" placeholder="Password">
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-sm-6 align-content-end">
+                <button type="submit" class="btn btn-primary btn-sm btn-dark float-right col-sm-4" style="margin-right:70px!important">Sign in</button>
+            </div>
+        </div>
+    </form>
+
+}

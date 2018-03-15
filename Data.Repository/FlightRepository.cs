@@ -7,7 +7,7 @@
     public class FlightRepository : XmlRepository<Flight>, IFlightRepository
     {
         public FlightRepository()
-            : base("c:\\test")
+            : base(System.String.Format(@"{0}\bin\Dependencies", System.AppDomain.CurrentDomain.BaseDirectory))
         {
         }
     }

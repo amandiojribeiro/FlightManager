@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfFlight xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Flight>
+    <Name>SN1234</Name>
+    <DepartureAirport>OPO</DepartureAirport>
+    <ArraivalAirport>LUX</ArraivalAirport>
+  </Flight>
+  <Flight>
+    <Name>SN1235</Name>
+    <DepartureAirport>LIS</DepartureAirport>
+    <ArraivalAirport>LUX</ArraivalAirport>
+  </Flight>
+  <Flight>
+    <Name>SN1236</Name>
+    <DepartureAirport>BRU</DepartureAirport>
+    <ArraivalAirport>OPO</ArraivalAirport>
+  </Flight>
+  <Flight>
+    <Name>SN1237</Name>
+    <DepartureAirport>LIS</DepartureAirport>
+    <ArraivalAirport>OPO</ArraivalAirport>
+  </Flight>
+  <Flight>
+    <Name>SN1238</Name>
+    <DepartureAirport>OPO</DepartureAirport>
+    <ArraivalAirport>ZFA</ArraivalAirport>
+  </Flight>
+  <Flight>
+    <Name>SN1239</Name>
+    <DepartureAirport>LIS</DepartureAirport>
+    <ArraivalAirport>ZFA</ArraivalAirport>
+  </Flight>
+  <Flight>
+    <Name>SN1240</Name>
+    <DepartureAirport>OPO</DepartureAirport>
+    <ArraivalAirport>DUB</ArraivalAirport>
+  </Flight>
+</ArrayOfFlight>
