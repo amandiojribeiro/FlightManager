@@ -1,0 +1,19 @@
+﻿
+@{
+    ViewBag.Title = "ReadJsonFile";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>ReadJsonFile</h2>
+
+@if (ViewBag.logFileContent != null)
+{
+    foreach (string dataLine in ViewBag.logFileContent)
+    {
+        @dataLine
+        <br />
+    }
+}
+
+<br />
+<input action="action" onclick="window.history.go(-1); return false;" type="button" value="Back" />
