@@ -9,6 +9,10 @@ namespace Presentation.Api.Controllers
     /// </summary>
     public class FileReaderController : Controller
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         // GET: FileReader
         public ActionResult Index()
         {
