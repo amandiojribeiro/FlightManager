@@ -1,4 +1,4 @@
-﻿namespace Application.DTO
+﻿namespace Application.Dto
 {
     using System;
 

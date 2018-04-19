@@ -1,24 +1,29 @@
 ﻿namespace Application.Services.TypeAdapters
 {
+    using Application.Dto;
     using AutoMapper;
-
-    using Application.DTO;
     using Domain.Model;
 
     public class DtoAdapterProfile : Profile
     {
-        protected override void Configure()
+        public override string ProfileName
         {
-            Mapper.CreateMap<Flight, FlightDto>()
+            get { return "DtoAdapterProfile"; }
+        }
+
+        public DtoAdapterProfile()
+        {
+             CreateMap<Flight, FlightDto>()
             .ForMember(dest => dest.Name, opt => opt.MapFrom(e => e.Name))
-            .ForMember(dest => dest.ArraivalAirport, opt => opt.MapFrom(e => e.ArraivalAirport))
+            .ForMember(dest => dest.ArraivalAirport, opt => opt.MapFrom(e => e.ArrivalAirport))
             .ForMember(dest => dest.DepartureAirport, opt => opt.MapFrom(e => e.DepartureAirport))
             .ReverseMap();
 
-            Mapper.CreateMap<Airport, AirportDto>()
+            CreateMap<Airport, AirportDto>()
            .ForMember(dest => dest.Name, opt => opt.MapFrom(e => e.Name))
            .ForMember(dest => dest.Iata, opt => opt.MapFrom(e => e.IATA))
            .ReverseMap();
         }
+
     }
 }

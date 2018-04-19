@@ -1,12 +1,13 @@
 ﻿namespace Application.Services.FlightService
 {
-    using System.Collections.Generic;
-    using System.Linq;
-    using Application.DTO;
+    using Application.Dto;
     using Domain.Core.RepositoryInterfaces;
     using Domain.Model;
     using Domain.Services;
-    using Infrastructure.CrossCutting.Adapters;
+    using Infrastructure.Crosscuting;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading.Tasks;
 
     public class FlightService : IFlightService
     {
@@ -14,7 +15,7 @@
         private readonly IAirportRepository airportRepository;
         private readonly IFlightDistanceCalculatorService flightDistanceCalculatorService;
 
-        public FlightService(IFlightRepository flightRepository, IAirportRepository airportRepository, 
+        public FlightService(IFlightRepository flightRepository, IAirportRepository airportRepository,
             IFlightDistanceCalculatorService flightDistanceCalculatorService)
         {
             this.flightRepository = flightRepository;
@@ -22,19 +23,19 @@
             this.flightDistanceCalculatorService = flightDistanceCalculatorService;
         }
 
-        public IEnumerable<AirportDto> GetAirportList()
+        public async Task<IEnumerable<AirportDto>> GetAirportList()
         {
             var airportList = this.airportRepository.GetAll();
-            return TypeAdapterHelper.Adapt<List<AirportDto>>(airportList);
+            return await Task.FromResult<IEnumerable<AirportDto>>(TypeAdapterHelper.Adapt<List<AirportDto>>(airportList));
         }
 
-        public FlightDto GetFlight(string name)
+        public async Task<FlightDto> GetFlight(string name)
         {
             var flightResult = this.flightRepository.Find(e => e.Name == name);
-            return TypeAdapterHelper.Adapt<FlightDto>(flightResult);
+            return await Task.FromResult<FlightDto>(TypeAdapterHelper.Adapt<FlightDto>(flightResult));
         }
 
-        public IEnumerable<FlightReportDto> GetFlightReports()
+        public async Task<IEnumerable<FlightReportDto>> GetFlightReports()
         {
             List<FlightReportDto> report = null;
 
@@ -42,39 +43,43 @@
             if (flightResults != null)
             {
                 report = new List<FlightReportDto>();
+                var airportsList = this.airportRepository.GetAll().ToList();
 
                 foreach (Flight flight in flightResults)
                 {
-                    var flightReport = new FlightReportDto();
+                    var from = airportsList.Find(e => e.IATA == flight.DepartureAirport);
+                    var to = airportsList.Find(e => e.IATA == flight.ArrivalAirport);
+                    var calculatedDistance = await this.flightDistanceCalculatorService.CalculateDistances(from.Latitude, from.Longitude, to.Latitude, to.Longitude);
+
+                    var flightReport = new FlightReportDto(calculatedDistance,this.flightDistanceCalculatorService.EstimatedConsumption, this.flightDistanceCalculatorService.FlightTime);
                     flightReport.FlightName = flight.Name;
-                    flightReport.ArrivalAirport = flight.ArraivalAirport;
+                    flightReport.ArrivalAirport = flight.ArrivalAirport;
                     flightReport.DepartureAirport = flight.DepartureAirport;
                     report.Add(flightReport);
                 }
             }
 
-            this.flightDistanceCalculatorService.CalculateDistances(report, this.airportRepository.GetAll().ToList());
             return report;
         }
 
-        public IEnumerable<FlightDto> GetFlights()
+        public async Task<IEnumerable<FlightDto>> GetFlights()
         {
             var flightResults = this.flightRepository.GetAll();
-            return TypeAdapterHelper.Adapt<List<FlightDto>>(flightResults);
+            return await Task.FromResult<IEnumerable<FlightDto>>(TypeAdapterHelper.Adapt<List<FlightDto>>(flightResults));
         }
 
-        public FlightDto SaveFlight(FlightDto flight)
+        public async Task<FlightDto> SaveFlight(FlightDto flight)
         {
-            return ManageFlight(TypeAdapterHelper.Adapt<Flight>(flight));
+            return await ManageFlight(TypeAdapterHelper.Adapt<Flight>(flight));
         }
 
-        private FlightDto ManageFlight(Flight flight)
+        private async Task<FlightDto> ManageFlight(Flight flight)
         {
             var flightResult = this.flightRepository.Find(e => e.Name == flight.Name);
 
             if (flightResult != null)
             {
-                flightResult.ArraivalAirport = flight.ArraivalAirport;
+                flightResult.ArrivalAirport = flight.ArrivalAirport;
                 flightResult.DepartureAirport = flight.DepartureAirport;
                 this.flightRepository.Update(flightResult);
             }
@@ -83,7 +88,7 @@
                 this.flightRepository.Add(flight);
             }
 
-            return TypeAdapterHelper.Adapt<FlightDto>(flight);
+            return await Task.FromResult<FlightDto>(TypeAdapterHelper.Adapt<FlightDto>(flight));
         }
     }
 }

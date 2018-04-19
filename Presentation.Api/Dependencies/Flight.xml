@@ -3,36 +3,36 @@
   <Flight>
     <Name>SN1234</Name>
     <DepartureAirport>OPO</DepartureAirport>
-    <ArraivalAirport>LUX</ArraivalAirport>
+    <ArrivalAirport>LUX</ArrivalAirport>
   </Flight>
   <Flight>
     <Name>SN1235</Name>
     <DepartureAirport>LIS</DepartureAirport>
-    <ArraivalAirport>LUX</ArraivalAirport>
+    <ArrivalAirport>LUX</ArrivalAirport>
   </Flight>
   <Flight>
     <Name>SN1236</Name>
     <DepartureAirport>BRU</DepartureAirport>
-    <ArraivalAirport>OPO</ArraivalAirport>
+    <ArrivalAirport>OPO</ArrivalAirport>
   </Flight>
   <Flight>
     <Name>SN1237</Name>
     <DepartureAirport>LIS</DepartureAirport>
-    <ArraivalAirport>OPO</ArraivalAirport>
+    <ArrivalAirport>OPO</ArrivalAirport>
   </Flight>
   <Flight>
     <Name>SN1238</Name>
     <DepartureAirport>OPO</DepartureAirport>
-    <ArraivalAirport>ZFA</ArraivalAirport>
+    <ArrivalAirport>ZFA</ArrivalAirport>
   </Flight>
   <Flight>
     <Name>SN1239</Name>
     <DepartureAirport>LIS</DepartureAirport>
-    <ArraivalAirport>ZFA</ArraivalAirport>
+    <ArrivalAirport>ZFA</ArrivalAirport>
   </Flight>
   <Flight>
     <Name>SN1240</Name>
     <DepartureAirport>OPO</DepartureAirport>
-    <ArraivalAirport>DUB</ArraivalAirport>
+    <ArrivalAirport>DUB</ArrivalAirport>
   </Flight>
 </ArrayOfFlight>

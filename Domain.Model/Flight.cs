@@ -6,6 +6,6 @@
 
         public string DepartureAirport { get; set; }
 
-        public string ArraivalAirport { get; set; }
+        public string ArrivalAirport { get; set; }
     }
 }

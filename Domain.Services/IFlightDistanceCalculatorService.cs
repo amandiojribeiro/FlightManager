@@ -1,11 +1,14 @@
 ﻿namespace Domain.Services
 {
-    using Application.DTO;
-    using Domain.Model;
-    using System.Collections.Generic;
+    using System;
+    using System.Threading.Tasks;
 
     public interface IFlightDistanceCalculatorService
     {
-        void CalculateDistances(List<FlightReportDto> flights, List<Airport> airportsList);
+        TimeSpan FlightTime { get; }
+
+        double EstimatedConsumption { get; }
+
+        Task<double> CalculateDistances(double fromLatitute, double fromLongitude, double toLatitude, double toLongitude);
     }
 }

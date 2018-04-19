@@ -1,0 +1,28 @@
+<h1>Weather forecast</h1>
+
+<p>This component demonstrates fetching data from the server.</p>
+
+<p *ngIf="!flightReports"><em>Loading...</em></p>
+
+<table class='table' *ngIf="flightReports">
+    <thead>
+        <tr>
+            <th>Flight Name</th>
+            <th>Departure Airport</th>
+            <th>Arrival Airport</th>
+            <th>Distance</th>
+            <th>Estimated Fuel Consumption</th>
+            <th>Flight Time</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let flightReport of flightReports">
+            <td>{{ flightReports.FlightName  }}</td>
+            <td>{{ flightReports.DepartureAirport }}</td>
+            <td>{{ flightReports.ArrivalAirport }}</td>
+            <td>{{ flightReports.Distance }}</td>
+            <td>{{ flightReports.EstimatedFuelConsumption }}</td>
+            <td>{{ flightReports.FlightTime }}</td>
+        </tr>
+    </tbody>
+</table>

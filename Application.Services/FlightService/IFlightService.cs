@@ -1,18 +1,19 @@
 ﻿namespace Application.Services.FlightService
 {
-    using Application.DTO;
+    using Application.Dto;
     using System.Collections.Generic;
+    using System.Threading.Tasks;
 
     public interface IFlightService
     {
-        FlightDto SaveFlight(FlightDto flight);
+        Task<FlightDto> SaveFlight(FlightDto flight);
 
-        FlightDto GetFlight(string name);
+        Task<FlightDto> GetFlight(string name);
 
-        IEnumerable<FlightDto> GetFlights();
+        Task<IEnumerable<FlightDto>> GetFlights();
 
-        IEnumerable<AirportDto> GetAirportList();
+        Task<IEnumerable<AirportDto>> GetAirportList();
 
-        IEnumerable<FlightReportDto> GetFlightReports();
+        Task<IEnumerable<FlightReportDto>> GetFlightReports();
     }
 }
