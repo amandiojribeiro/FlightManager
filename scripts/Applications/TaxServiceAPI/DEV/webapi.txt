@@ -1,0 +1,2 @@
+/TaxServiceAPI/api/tax/declaration/invoke/quarter
+/TaxServiceAPI/api/tax/declaration/qualitycheck/availability

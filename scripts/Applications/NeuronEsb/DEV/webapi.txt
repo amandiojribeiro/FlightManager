@@ -1,0 +1,1 @@
+/neuronesb/api/v1/runtime/MiblEsbDev01Inst01/status
